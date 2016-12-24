@@ -1,0 +1,16 @@
+---
+# defaults file for monsieurbiz.letsencrypt
+
+monsieurbiz_letsencrypt_apt_backports: "deb http://ftp.debian.org/debian jessie-backports main"
+
+monsieurbiz_letsencrypt_certbot_registration_email: "letsencrypt@example.org"
+
+monsieurbiz_letsencrypt_certbot_hooks: "--pre-hook \"service nginx stop\" --post-hook \"service nginx start\""
+
+monsieurbiz_letsencrypt_domain_groups: []
+#  - domains:
+#      - monsieurbiz.com
+#      - www.monsieurbiz.com
+#  - domains:
+#      - monsieurbiz.fr
+#      - www.monsieurbiz.fr

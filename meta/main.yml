@@ -1,0 +1,21 @@
+galaxy_info:
+  author: Jacques Bodin-Hullin
+  description: |
+    The "letsencrypt" role allows you to quickly create SSL certificates with Let's Encrypt.
+  company: Monsieur Biz
+  license: MIT
+  issue_tracker_url: https://github.com/monsieurbiz/ansible-role-letsencrypt
+  min_ansible_version: 2.0
+  github_branch: master
+
+  platforms:
+  - name: Debian
+    versions:
+      - jessie
+
+  galaxy_tags:
+    - monsieurbiz
+    - ssl
+    - letsencrypt
+
+dependencies: []

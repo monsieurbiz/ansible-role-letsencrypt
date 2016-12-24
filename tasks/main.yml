@@ -1,0 +1,22 @@
+---
+# tasks file for monsieurbiz.letsencrypt
+
+- name: Test setup of email registration
+  fail: msg="Please setup the email registration for Let's encrypt (var monsieurbiz_letsencrypt_certbot_registration_email)"
+  when: monsieurbiz_letsencrypt_certbot_registration_email == "letsencrypt@example.org"
+
+- name: Activate backports
+  become: yes
+  become_user: root
+  apt_repository: repo={{ monsieurbiz_letsencrypt_apt_backports }}
+
+- name: Install certbot
+  become: yes
+  become_user: root
+  apt: name=certbot state=latest default_release=jessie-backports update_cache=yes cache_valid_time=3600
+
+- name: Create certificates with Let's Encrypt
+  become: yes
+  become_user: root
+  shell: "certbot --agree-tos --non-interactive --standalone --text --email \"{{ monsieurbiz_letsencrypt_certbot_registration_email }}\" {{ monsieurbiz_letsencrypt_certbot_hooks }} {% for domain in item.domains %}-d {{ domain }} {% endfor %}"
+  with_items: "{{ monsieurbiz_letsencrypt_domain_groups }}"
