@@ -18,5 +18,5 @@
 - name: Create certificates with Let's Encrypt
   become: yes
   become_user: root
-  shell: "certbot --agree-tos --non-interactive --standalone --text --email \"{{ monsieurbiz_letsencrypt_certbot_registration_email }}\" {{ monsieurbiz_letsencrypt_certbot_hooks }} {% for domain in item.domains %}-d {{ domain }} {% endfor %}"
+  shell: "certbot certonly --agree-tos --non-interactive --standalone --text --email \"{{ monsieurbiz_letsencrypt_certbot_registration_email }}\" {{ monsieurbiz_letsencrypt_certbot_hooks }} {% for domain in item.domains %}-d {{ domain }} {% endfor %}"
   with_items: "{{ monsieurbiz_letsencrypt_domain_groups }}"
