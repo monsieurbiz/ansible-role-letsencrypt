@@ -1,6 +1,7 @@
 ---
 # defaults file for monsieurbiz.letsencrypt
 
+# Empty the apt_backorts if you want to install on wheezy with a simple wget
 monsieurbiz_letsencrypt_apt_backports: "deb http://ftp.debian.org/debian jessie-backports main"
 
 monsieurbiz_letsencrypt_certbot_registration_email: "letsencrypt@example.org"

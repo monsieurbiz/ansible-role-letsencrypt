@@ -8,12 +8,20 @@
 - name: Activate backports
   become: yes
   become_user: root
-  apt_repository: repo={{ monsieurbiz_letsencrypt_apt_backports }}
+  apt_repository: repo="{{ monsieurbiz_letsencrypt_apt_backports }}"
+  when: not monsieurbiz_letsencrypt_apt_backports == ""
 
 - name: Install certbot
   become: yes
   become_user: root
   apt: name=certbot state=latest default_release=jessie-backports update_cache=yes cache_valid_time=3600
+  when: not monsieurbiz_letsencrypt_apt_backports == ""
+
+- name: Install certbot if no backports
+  become: yes
+  become_user: root
+  shell: wget https://dl.eff.org/certbot-auto -O /usr/local/bin/certbot && chmod a+x /usr/local/bin/certbot
+  when: monsieurbiz_letsencrypt_apt_backports == ""
 
 - name: Create certificates with Let's Encrypt
   become: yes
